@@ -1,15 +1,16 @@
-# Deploy 
+# Deploy
 
 https://rickandmortyreact-api.netlify.app/
 
 # Stack
+
 - React / Vite
 - Chakra UI
 - Axios
 
 # Features
 
-- Hacer responsive
+- Hacer responsive usando useMediaQuery()
 - Agregar paginación
 
 # Usage
