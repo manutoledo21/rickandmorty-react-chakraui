@@ -11,7 +11,7 @@ https://rickandmortyreact-api.netlify.app/
 
 # Images
 
-!(https://ibb.co/zQRN7JB)
+https://ibb.co/zQRN7JB
 
 # Features
 
