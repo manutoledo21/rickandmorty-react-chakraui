@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { allCharacters } from '../services/services';
-import { Box, Button, Heading, Image, Spinner } from '@chakra-ui/react';
+import { Text, Box, Button, Heading, Image, Spinner } from '@chakra-ui/react';
 import Error404 from './Error404';
+import Subtitle from './Subtitle';
 
 const IndexPage = () => {
   const [url, setUrl] = useState('https://rickandmortyapi.com/api/character/?page=1');
@@ -30,6 +31,7 @@ const IndexPage = () => {
 
   return (
     <>
+      <Subtitle total={total} />
       {isLoading ? (
         <Box display="flex" justifyContent="center">
           <Spinner size="xl" m={2} />
@@ -64,6 +66,9 @@ const IndexPage = () => {
             )}
             {next !== null ? <Button onClick={() => buttonNext(next)}>Next</Button> : ''}
           </Box>
+          <Text textAlign="center" fontSize="sm" mb={2}>
+            Total Pages: <strong>{pages}</strong>
+          </Text>
         </div>
       ) : (
         <Error404 />
@@ -73,53 +78,3 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
-
-// import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-// import { allCharacters } from '../services/services';
-// import { Box, Heading, Image, Spinner } from '@chakra-ui/react';
-// import Error404 from './Error404';
-
-// const IndexPage = () => {
-//   const [characters, setCharacters] = useState(null);
-//   const [isLoading, setIsLoading] = useState(true);
-
-//   useEffect(() => {
-//     allCharacters(setCharacters);
-//     setIsLoading(false);
-//   }, []);
-
-//   return (
-//     <>
-//       {isLoading ? (
-//         <Box display="flex" justifyContent="center">
-//           <Spinner size="xl" m={2} />
-//         </Box>
-//       ) : characters !== null ? (
-//         <Box m={8} display="flex" justifyContent="center" alignItems="center">
-//           {characters.map((character) => (
-//             <Link to={`/character/${character.id}`}>
-//               <Box
-//                 display="flex"
-//                 justifyContent="center"
-//                 alignItems="center"
-//                 flexDirection="column"
-//                 boxShadow="dark-lg"
-//                 borderRadius="xl"
-//                 bg="green.100">
-//                 <Image src={character.image} alt="img" borderTopRadius="xl" />
-//                 <Heading fontSize="xl" p={2}>
-//                   {character.name}
-//                 </Heading>
-//               </Box>
-//             </Link>
-//           ))}
-//         </Box>
-//       ) : (
-//         <Error404 />
-//       )}
-//     </>
-//   );
-// };
-
-// export default IndexPage;

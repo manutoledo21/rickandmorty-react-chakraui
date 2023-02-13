@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { singleCharacter } from '../services/services';
-import { Text, Box, Heading, Image } from '@chakra-ui/react';
-
+import { Text, Box, Heading, Image, useMediaQuery } from '@chakra-ui/react';
+import Error404 from './Error404';
 const CharacterDetails = () => {
   const { id } = useParams();
   const [character, setCharacter] = useState(null);
+  const [isMedScreen] = useMediaQuery('(min-width: 550px)');
+  const [isBigScreen] = useMediaQuery('(min-width: 1024px)');
 
   useEffect(() => {
     singleCharacter(id, setCharacter);
@@ -22,35 +24,49 @@ const CharacterDetails = () => {
             <Box
               display="flex"
               alignItems="center"
-              justifyContent="center"
-              flexDirection="column"
-              mb={8}
+              justifyContent={isBigScreen ? 'center' : 'space-around'}
+              flexDirection={isBigScreen ? 'row' : 'column'}
               bg="green.100"
               borderRadius="xl"
-              w="80%">
-              <Image src={character.image} alt="img" borderTopRadius="xl" w="100%" />
-              <Box display="flex" flexDir="column" alignItems="flex-start" p={2}>
-                <Text as="samp" fontSize="lg">
-                  <strong>Gender:</strong> {character.gender}
-                </Text>
-                <Text as="samp" fontSize="lg">
-                  <strong>Species:</strong> {character.species}
-                </Text>
-                <Text as="samp" fontSize="lg">
-                  <strong>Origin:</strong> {character.origin.name}
-                </Text>
-                <Text as="samp" fontSize="lg">
-                  <strong>Location:</strong> {character.location.name}
-                </Text>
-                <Text as="samp" fontSize="lg">
-                  <strong>Status:</strong> {character.status}
-                </Text>
+              w={isBigScreen ? '80%' : '80%'}
+              mb={8}>
+              <Image
+                src={character.image}
+                alt="img"
+                borderTopRadius={isBigScreen ? 'none' : 'xl'}
+                w={isBigScreen ? '50%' : '100%'}
+              />
+              <Box as="samp">
+                <Box
+                  display="flex"
+                  flexDir="column"
+                  alignItems="flex-start"
+                  textAlign="end"
+                  p={4}
+                  fontSize={isMedScreen ? '2xl' : 'lg'}
+                  gap={isBigScreen ? '4' : '0'}>
+                  <Text>
+                    <strong>Gender:</strong> {character.gender}
+                  </Text>
+                  <Text>
+                    <strong>Species:</strong> {character.species}
+                  </Text>
+                  <Text>
+                    <strong>Origin:</strong> {character.origin.name}
+                  </Text>
+                  <Text>
+                    <strong>Location:</strong> {character.location.name}
+                  </Text>
+                  <Text>
+                    <strong>Status:</strong> {character.status}
+                  </Text>
+                </Box>
               </Box>
             </Box>
           </Box>
         </div>
       ) : (
-        'No hay información'
+        <Error404 />
       )}
     </>
   );

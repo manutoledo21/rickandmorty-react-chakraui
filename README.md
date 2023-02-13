@@ -7,11 +7,11 @@ https://rickandmortyreact-api.netlify.app/
 - React / Vite
 - Chakra UI
 - Axios
+- Yarn
 
 # Features
 
-- Hacer responsive usando useMediaQuery()
-- Agregar paginación
+- Agregarle dark-light mode
 
 # Usage
 

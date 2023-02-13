@@ -9,7 +9,9 @@ const Footer = () => {
         <Text as="samp">
           React Proyect by{' '}
           <Text fontSize="lg" as="u">
-            <Link to={'https://github.com/manutoledo21'}>Manu Toledo</Link>
+            <Link to={'https://github.com/manutoledo21'}>
+              <strong>Manu Toledo</strong>
+            </Link>
           </Text>
         </Text>
       </Box>
