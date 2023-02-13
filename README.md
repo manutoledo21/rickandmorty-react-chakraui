@@ -9,6 +9,10 @@ https://rickandmortyreact-api.netlify.app/
 - Axios
 - Yarn
 
+# Images
+
+!(https://ibb.co/zQRN7JB)
+
 # Features
 
 - Agregarle dark-light mode
